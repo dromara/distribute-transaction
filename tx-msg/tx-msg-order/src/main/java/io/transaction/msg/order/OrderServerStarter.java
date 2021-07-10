@@ -16,9 +16,12 @@
 package io.transaction.msg.order;
 
 import io.transaction.msg.order.service.OrderService;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author binghe
@@ -26,10 +29,13 @@ import org.springframework.context.ConfigurableApplicationContext;
  * @description 订单微服务启动类
  */
 @SpringBootApplication
+@ComponentScan(basePackages = {"io.transaction.msg"})
+@MapperScan(value = { "io.transaction.msg.order.mapper" })
+@EnableTransactionManagement(proxyTargetClass = true)
 public class OrderServerStarter {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(OrderServerStarter.class, args);
         OrderService orderService = context.getBean(OrderService.class);
-        orderService.submitOrder(1001L, 1);
+        orderService.submitOrder(1001L, 10001);
     }
 }

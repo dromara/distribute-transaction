@@ -17,7 +17,6 @@ package io.transaction.msg.stock.service;
 
 import io.transaction.msg.stock.entity.Stock;
 import io.transaction.msg.stock.tx.TxMessage;
-import org.apache.ibatis.annotations.Param;
 
 /**
  * @author binghe
