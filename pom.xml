@@ -21,6 +21,7 @@
         <module>spring-tx</module>
         <module>tcc-tx</module>
         <module>tx-msg</module>
+        <module>tx-notifymsg</module>
     </modules>
 
 

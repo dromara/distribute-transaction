@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.transaction.notifymsg.pay.mapper.PayInfoMapper">
+    <select id="isExistsPayInfo" resultType="java.lang.Integer">
+        select 1 from pay_info where tx_no = #{txNo} limit 1
+    </select>
+
+
+    <insert id="savePayInfo">
+        insert into pay_info
+          (tx_no, account_no, pay_amount, pay_result, pay_time)
+        values
+          (#{payInfo.txNo}, #{payInfo.accountNo}, #{payInfo.payAmount}, #{payInfo.payResult}, #{payInfo.payTime})
+    </insert>
+
+    <select id="getPayInfoByTxNo" resultType="io.transaction.notifymsg.pay.entity.PayInfo">
+        select
+          tx_no as txNo, account_no as accountNo, pay_amount as payAmount, pay_result as payResult, pay_time as payTime
+        from
+          pay_info
+        where
+          tx_no = #{txNo}
+    </select>
+</mapper>

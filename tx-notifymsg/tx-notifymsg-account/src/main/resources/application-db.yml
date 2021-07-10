@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/tx-msg-stock?useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&autoReconnect=true&failOverReadOnly=false&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/tx-notifymsg-account?useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&autoReconnect=true&failOverReadOnly=false&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -39,6 +39,7 @@ mybatis-plus:
       db-type: mysql
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
-  mapper-locations: classpath:/mapper/*.xml
   configuration:
     jdbc-type-for-null: 'null'
+  mapper-locations: classpath*:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: io.transaction.notifymsg.account.entity.*   # 注意：对应实体类的路径

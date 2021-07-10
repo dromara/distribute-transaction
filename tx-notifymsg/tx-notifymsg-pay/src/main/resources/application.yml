@@ -1,0 +1,29 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /pay
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    include: db
+    active: db
+  output:
+    ansi:
+      enabled: detect
+  application:
+    name: tx-notifymsg-pay
+
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+rocketmq:
+  name-server: 192.168.175.101:9876
+  producer:
+    group: pay-group
