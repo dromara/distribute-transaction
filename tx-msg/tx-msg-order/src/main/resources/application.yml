@@ -1,0 +1,29 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /order
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    include: db
+    active: db
+  output:
+    ansi:
+      enabled: detect
+  application:
+    name: tx-msg-order
+
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+rocketmq:
+  name-server: 192.168.175.101:9876
+  producer:
+    group: order-group

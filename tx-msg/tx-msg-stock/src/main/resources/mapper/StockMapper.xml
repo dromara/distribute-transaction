@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.transaction.msg.stock.mapper.StockMapper">
+
+    <select id="getStockById" resultType="io.transaction.msg.stock.entity.Stock">
+        select id as id, product_id as productId, total_count as totalCount from stock where id = #{id}
+    </select>
+
+
+    <select id="getStockByProductId" resultType="io.transaction.msg.stock.entity.Stock">
+        select
+          id as id, product_id as productId, total_count as totalCount
+        from
+          stock
+        where
+          product_id = #{productId}
+    </select>
+
+    <update id="updateTotalCountById">
+        update stock set total_count = total_count - #{count} where id = #{id}
+    </update>
+
+    <select id="isExistsTx" resultType="java.lang.Integer">
+        select 1 from tx_log where tx_no = #{txNo} limit 1
+    </select>
+
+    <insert id="saveTxLog">
+        insert into tx_log(tx_no, create_time) values (#{txNo}, now())
+    </insert>
+</mapper>

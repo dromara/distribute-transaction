@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.transaction.msg.order.mapper.OrderMapper">
+
+    <insert id="saveOrder">
+        insert into `order`
+         (id, create_time, order_no, product_id,  pay_count)
+        values
+         (#{order.id}, #{order.createTime}, #{order.orderNo}, #{order.productId}, #{order.payCount})
+    </insert>
+
+
+    <select id="isExistsTx" resultType="java.lang.Integer">
+        select 1 from tx_log where tx_no = #{txNo} limit 1
+    </select>
+
+    <insert id="saveTxLog">
+        insert into tx_log(tx_no, create_time) values (#{txNo}, now())
+    </insert>
+
+</mapper>

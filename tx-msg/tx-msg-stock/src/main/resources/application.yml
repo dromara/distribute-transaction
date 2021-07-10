@@ -1,0 +1,34 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /stock
+  tomcat:
+    uri-encoding: UTF-8
+  #设置编码为UTF-8
+
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: io.transaction.msg.stock.entity.*   # 注意：对应实体类的路径
+
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    include: db
+    active: db
+  output:
+    ansi:
+      enabled: detect
+  application:
+    name: tx-msg-stock
+
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+rocketmq:
+  name-server: 192.168.175.101:9876
