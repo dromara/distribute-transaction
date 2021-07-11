@@ -13,7 +13,7 @@
           (#{payInfo.txNo}, #{payInfo.accountNo}, #{payInfo.payAmount}, #{payInfo.payResult}, #{payInfo.payTime})
     </select>
 
-    <select id="getPayInfoByTxNo" resultType="io.transaction.notifymsg.pay.entity.PayInfo">
+    <select id="getPayInfoByTxNo" resultType="io.transaction.notifymsg.account.entity.PayInfo">
         select
           tx_no as txNo, account_no as accountNo, pay_amount as payAmount, pay_result as payResult, pay_time as payTime
         from
