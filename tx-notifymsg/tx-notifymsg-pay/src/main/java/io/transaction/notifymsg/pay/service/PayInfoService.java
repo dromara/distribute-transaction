@@ -16,7 +16,6 @@
 package io.transaction.notifymsg.pay.service;
 
 import io.transaction.notifymsg.pay.entity.PayInfo;
-import org.apache.ibatis.annotations.Param;
 
 /**
  * @author binghe
@@ -33,5 +32,5 @@ public interface PayInfoService {
     /**
      * 查询指定的充值信息
      */
-    PayInfo getPayInfoByTxNo(@Param("txNo") String txNo);
+    PayInfo getPayInfoByTxNo(String txNo);
 }

@@ -16,7 +16,6 @@
 package io.transaction.notifymsg.account.message;
 
 import com.alibaba.fastjson.JSONObject;
-import io.transaction.notifymsg.account.entity.AccountInfo;
 import io.transaction.notifymsg.account.entity.PayInfo;
 import io.transaction.notifymsg.account.service.AccountInfoService;
 import lombok.extern.slf4j.Slf4j;
