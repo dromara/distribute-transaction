@@ -15,11 +15,16 @@
  */
 package io.transaction.notifymsg.pay;
 
+import io.transaction.notifymsg.pay.entity.PayInfo;
+import io.transaction.notifymsg.pay.service.PayInfoService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import java.math.BigDecimal;
 
 /**
  * @author binghe
@@ -33,6 +38,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class PayServerStarter {
 
     public static void main(String[] args) {
-        SpringApplication.run(PayServerStarter.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(PayServerStarter.class, args);
+        PayInfoService payInfoService = context.getBean(PayInfoService.class);
+        PayInfo payInfo = new PayInfo();
+        payInfo.setAccountNo("1001");
+        payInfo.setPayAmount(BigDecimal.valueOf(1000));
+        payInfoService.savePayInfo(payInfo);
     }
 }

@@ -47,8 +47,9 @@ public class PayInfoServiceImpl implements PayInfoService {
         int count = payInfoMapper.savePayInfo(payInfo);
         //充值信息保存成功
         if(count > 0){
+            log.info("充值微服务向账户微服务发送结果消息");
             //发送消息通知账户微服务
-            rocketMQTemplate.convertAndSend("consumer_group_account", payInfo);
+            rocketMQTemplate.convertAndSend("topic_nofitymsg", payInfo);
             return payInfo;
         }
         return null;

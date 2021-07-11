@@ -36,4 +36,9 @@ public interface PayInfoMapper  {
      * 保存充值记录
      */
     void savePayInfo(@Param("payInfo")PayInfo payInfo);
+
+    /**
+     * 查询指定的充值信息
+     */
+    PayInfo getPayInfoByTxNo(@Param("txNo") String txNo);
 }

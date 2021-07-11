@@ -15,16 +15,17 @@
  */
 package io.transaction.notifymsg.account.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import io.transaction.notifymsg.account.entity.PayInfo;
 import io.transaction.notifymsg.account.mapper.AccountInfoMapper;
 import io.transaction.notifymsg.account.mapper.PayInfoMapper;
 import io.transaction.notifymsg.account.service.AccountInfoService;
+import io.transaction.notifymsg.account.utils.HttpConnectionUtils;
+import io.transaction.notifymsg.account.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigDecimal;
 
 /**
  * @author binghe
@@ -38,6 +39,8 @@ public class AccountInfoServiceImpl implements AccountInfoService {
     private AccountInfoMapper accountInfoMapper;
     @Autowired
     private PayInfoMapper payInfoMapper;
+
+    private String url = "http://localhost:8083/pay/query/payresult/";
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -54,7 +57,20 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 
     @Override
     public PayInfo queryPayResult(String txNo) {
-        //TODO 待实现
+        String getUrl = url.concat(txNo);
+        try{
+            String payData = HttpConnectionUtils.getPayData(getUrl, null, null, HttpConnectionUtils.TYPE_STREAM);
+            if(!StringUtils.isEmptyWithTrim(payData)){
+                JSONObject jsonObject = JSONObject.parseObject(payData);
+                PayInfo payInfo = jsonObject.toJavaObject(PayInfo.class);
+                if(payInfo != null && "success".equals(payInfo.getPayResult())){
+                    this.updateAccountBalance(payInfo);
+                }
+                return payInfo;
+            }
+        }catch (Exception e){
+            log.error("查询充值结果异常:{}", e);
+        }
         return null;
     }
 }
