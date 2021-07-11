@@ -1,3 +1,4 @@
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -6,7 +7,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `account_info`;
 CREATE TABLE `account_info`  (
-  `id` int(11) NOT NULL COMMENT '主键id',
+  `id` bigint(11) NOT NULL COMMENT '主键id',
   `account_no` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '账户',
   `account_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '账户名',
   `account_balance` decimal(10, 2) NULL DEFAULT 0.00 COMMENT '账户余额',
