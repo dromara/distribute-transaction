@@ -22,6 +22,7 @@
         <module>tcc-tx</module>
         <module>tx-msg</module>
         <module>tx-notifymsg</module>
+        <module>tx-xa</module>
     </modules>
 
 

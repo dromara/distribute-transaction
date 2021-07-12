@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.transaction.xa.mapper1.UserAccount1Mapper">
+
+    <update id="updateAccountBalance">
+        update user_account set account_balance = account_balance + #{accountBalance} where account_no = #{accountNo}
+    </update>
+
+    <select id="getAccountBalance" resultType="java.math.BigDecimal">
+        select account_balance from user_account where account_no = #{accountNo}
+    </select>
+
+</mapper>

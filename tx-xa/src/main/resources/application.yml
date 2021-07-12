@@ -1,0 +1,24 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /xa
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    include: db
+    active: db
+  output:
+    ansi:
+      enabled: detect
+  application:
+    name: tx-xa
+
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true

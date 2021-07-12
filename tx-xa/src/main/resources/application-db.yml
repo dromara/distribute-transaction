@@ -1,0 +1,32 @@
+mysql:
+  datasource:
+    account1:
+      url: jdbc:mysql://127.0.0.1:3306/tx-xa-01?useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&autoReconnect=true&failOverReadOnly=false&useSSL=false
+      username: root
+      password: root
+      minPoolsize: 3
+      maxPoolSize: 25
+      maxLifetime: 30000
+      borrowConnectionTimeout: 30
+      loginTimeout: 30
+      maintenanceInterval: 60
+      maxIdleTime: 60
+      testQuery: SELECT 1
+
+    account2:
+      url: jdbc:mysql://127.0.0.1:3306/tx-xa-02?useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&autoReconnect=true&failOverReadOnly=false&useSSL=false
+      username: root
+      password: root
+      minPoolsize: 3
+      maxPoolSize: 25
+      maxLifetime: 30000
+      borrowConnectionTimeout: 30
+      loginTimeout: 30
+      maintenanceInterval: 60
+      maxIdleTime: 60
+      testQuery: SELECT 1
+
+
+mybatis:
+#  mapper-locations: classpath*:mapper1/*.xml,classpath*:mapper2/*.xml
+  type-aliases-package: io.transaction.xa.entity
