@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author binghe
  * @version 1.0.0
- * @description
+ * @description 转出银行微服务Service实现类
  */
 @Slf4j
 @Service("userAccountBank01Service")

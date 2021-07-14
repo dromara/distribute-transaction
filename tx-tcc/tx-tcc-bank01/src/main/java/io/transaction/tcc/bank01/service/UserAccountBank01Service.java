@@ -17,8 +17,6 @@ package io.transaction.tcc.bank01.service;
 
 import io.transaction.tcc.common.dto.UserAccountDto;
 
-import java.math.BigDecimal;
-
 /**
  * @author binghe
  * @version 1.0.0

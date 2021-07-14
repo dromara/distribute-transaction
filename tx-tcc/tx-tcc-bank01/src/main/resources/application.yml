@@ -6,12 +6,6 @@ server:
     uri-encoding: UTF-8
   #设置编码为UTF-8
 
-
-mybatis-plus:
-  mapper-locations: classpath*:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
-  type-aliases-package: io.transaction.tcc.common.entity.*   # 注意：对应实体类的路径
-
-
 spring:
   main:
     allow-bean-definition-overriding: true
