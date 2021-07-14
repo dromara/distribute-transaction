@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.transaction.tcc.common.mapper.UserAccountMapper">
+
+    <select id="getUserAccountByAccountNo" resultType="io.transaction.tcc.common.entity.UserAccount">
+        select
+            account_no as accountNo, account_name as accountName, account_balance as accountBalance, transfer_amount as transferAmount
+        from
+            user_account
+        where
+            account_no = #{accountNo}
+    </select>
+
+    <update id="updateUserAccountBalanceBank01">
+        update
+          user_account
+        set
+          transfer_amount = transfer_amount + #{amount}, account_balance = account_balance - #{amount}
+        where
+          account_no = #{accountNo}
+    </update>
+
+    <update id="confirmUserAccountBalanceBank01">
+        update
+          user_account
+        set
+          transfer_amount = transfer_amount - #{amount}
+        where
+          account_no = #{accountNo}
+    </update>
+
+    <update id="cancelUserAccountBalanceBank01">
+        update
+          user_account
+        set
+          transfer_amount = transfer_amount - #{amount}, account_balance = account_balance + #{amount}
+        where
+          account_no = #{accountNo}
+    </update>
+
+    <update id="updateUserAccountBalanceBank02">
+        update
+          user_account
+        set
+          transfer_amount = transfer_amount + #{amount}
+        where
+          account_no = #{accountNo}
+    </update>
+
+    <update id="confirmUserAccountBalanceBank02">
+        update
+          user_account
+        set
+          transfer_amount = transfer_amount - #{amount}, account_balance = account_balance + #{amount}
+        where
+          account_no = #{accountNo}
+    </update>
+
+    <update id="cancelUserAccountBalanceBank02">
+        update
+          user_account
+        set
+          transfer_amount = transfer_amount - #{amount}
+        where
+          account_no = #{accountNo}
+    </update>
+
+    <insert id="saveTryLog">
+        insert into try_log (tx_no, create_time) values(#{txNo}, now())
+    </insert>
+
+    <select id="existsTryLog" resultType="java.lang.Integer">
+        select 1 from try_log where tx_no = #{txNo} limit 1
+    </select>
+
+    <insert id="saveConfirmLog">
+        insert into confirm_log (tx_no, create_time) values(#{txNo}, now())
+    </insert>
+
+    <select id="existsConfirmLog" resultType="java.lang.Integer">
+        select 1 from confirm_log where tx_no = #{txNo} limit 1
+    </select>
+
+    <insert id="saveCancelLog">
+        insert into cancel_log (tx_no, create_time) values(#{txNo}, now())
+    </insert>
+
+    <select id="existsCancelLog" resultType="java.lang.Integer">
+        select 1 from cancel_log where tx_no = #{txNo} limit 1
+    </select>
+
+</mapper>
