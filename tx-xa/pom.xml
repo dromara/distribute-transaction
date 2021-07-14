@@ -19,7 +19,6 @@
         <druid.version>1.1.10</druid.version>
         <mybatis.version>3.4.6</mybatis.version>
         <mybatis.plus.version>3.1.0</mybatis.plus.version>
-        <rocketmq.version>4.3.0</rocketmq.version>
         <jdbc.version>5.1.49</jdbc.version>
         <lombok.version>1.18.12</lombok.version>
     </properties>

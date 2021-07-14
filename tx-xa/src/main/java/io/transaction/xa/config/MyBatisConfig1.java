@@ -41,7 +41,7 @@ public class MyBatisConfig1 {
     // 配置数据源
     @Primary
     @Bean(name = "account1DataSource")
-    public DataSource testDataSource(DBConfig1 dbConfig1) throws SQLException {
+    public DataSource account1DataSource(DBConfig1 dbConfig1) throws SQLException {
         MysqlXADataSource mysqlXaDataSource = new MysqlXADataSource();
         mysqlXaDataSource.setUrl(dbConfig1.getUrl());
         mysqlXaDataSource.setPinGlobalTxToPhysicalConnection(true);
@@ -66,7 +66,7 @@ public class MyBatisConfig1 {
 
     @Primary
     @Bean(name = "accout1SqlSessionFactory")
-    public SqlSessionFactory testSqlSessionFactory(@Qualifier("account1DataSource") DataSource dataSource)
+    public SqlSessionFactory accout1SqlSessionFactory(@Qualifier("account1DataSource") DataSource dataSource)
             throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
@@ -75,7 +75,7 @@ public class MyBatisConfig1 {
 
     @Primary
     @Bean(name = "account1SqlSessionTemplate")
-    public SqlSessionTemplate testSqlSessionTemplate(
+    public SqlSessionTemplate account1SqlSessionTemplate(
             @Qualifier("accout1SqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
     }

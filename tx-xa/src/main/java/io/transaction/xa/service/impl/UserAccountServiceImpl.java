@@ -32,7 +32,7 @@ import java.math.BigDecimal;
  */
 @Slf4j
 @Service
-public class UserAccountImpl implements UserAccountService {
+public class UserAccountServiceImpl implements UserAccountService {
 
     @Autowired
     private UserAccount1Mapper userAccount1Mapper;
